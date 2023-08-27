@@ -1,5 +1,6 @@
 # FSJS_Project-10_Full-Stack-App-with-React-and-a-REST-API
-The tenth (capstone) of ten projects for the Full Stack JavaScript Techdegree program at TreeHouse. 
+
+The tenth (capstone) of ten projects for the Full Stack JavaScript Techdegree program at TreeHouse.
 
 ## Project Overview
 
@@ -7,7 +8,7 @@ In my final project, I've used React to create a client for my existing school d
 
 Additionally, my project required users to create an account and sign in to make changes to the database. Implementing these features pushed my React skills to new heights.
 
-### To complete this project, I've used my knowledge of React, JSX, React Router, React Context API, and Create React App.
+To complete this project, I've used my knowledge of React, JSX, React Router, React Context API, and Create React App.
 
 After using the Create React App tool to set up my initial project, I:
 
@@ -17,16 +18,22 @@ After using the Create React App tool to set up my initial project, I:
 - Allowed users to sign up and utilized basic authentication to support users signing in.
 - Added to the supplied CSS to personalize my project.
 
+### To explore the App without creating an account:
+
+Log in with the following credentials:
+Email: joe@smith.com
+Password: joepassword
+
 ## To run the project
 
 **First**, install the project dependencies:
-  `npm install`
+`npm install`
 
 **Next**, create the database and seed it with initial data:
-  `npm run seed`
+`npm run seed`
 
 **Finally**, launch the application:
-  `npm start`
+`npm start`
 
 **Verify the deployment by navigating to your server address in
 your preferred browser**
