@@ -7,7 +7,7 @@ In my final project, I've used React to create a client for my existing school d
 
 Additionally, my project required users to create an account and sign in to make changes to the database. Implementing these features pushed my React skills to new heights.
 
-To complete this project, I've used my knowledge of React, JSX, React Router, React Context API, and Create React App.
+### To complete this project, I've used my knowledge of React, JSX, React Router, React Context API, and Create React App.
 
 After using the Create React App tool to set up my initial project, I:
 
