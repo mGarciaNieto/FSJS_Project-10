@@ -2,6 +2,8 @@
 
 The tenth (capstone) of ten projects for the Full Stack JavaScript Techdegree program at TreeHouse.
 
+![](https://i.ibb.co/2FFsKSV/treehouse-Logo.png)
+
 ## Project Overview
 
 In my final project, I've used React to create a client for my existing school database REST API (which I had created in a previous project). This full stack application provides a way for users to administer a school database containing information about courses: users could interact with the database by retrieving a list of courses, viewing details for a specific course, as well as creating, updating, and deleting courses in the database.
