@@ -2,7 +2,7 @@
 
 The tenth (capstone) of ten projects for the Full Stack JavaScript Techdegree program at TreeHouse.
 
-![](https://i.ibb.co/2FFsKSV/treehouse-Logo.png)
+![](https://i.ibb.co/2FFsKSV/treehouse-Logo.png) ![](https://i.ibb.co/7kd54Mj/techdegree-Logo.png>)
 
 ## Project Overview
 
