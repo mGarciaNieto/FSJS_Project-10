@@ -21,8 +21,8 @@ After using the Create React App tool to set up my initial project, I:
 ### To explore the App without creating an account:
 
 Log in with the following credentials:
-Email: joe@smith.com
-Password: joepassword
+**Email:** joe@smith.com
+**Password:** joepassword
 
 ## To run the project
 
