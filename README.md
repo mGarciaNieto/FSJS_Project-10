@@ -45,9 +45,11 @@ http://localhost:3000 (client) and http://localhost:5000 (api)
 or
 
 ```sh
-127.0.0.1:3000 127.0.0.1:5000
+127.0.0.1:3000
 ```
-
+```sh
+127.0.0.1:5000
+```
 ##
 
 > **Grade**: ready for marking
