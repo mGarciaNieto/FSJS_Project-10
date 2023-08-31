@@ -28,24 +28,24 @@ Log in with the following credentials:
 
 ## To run the project
 
-**First**, install the project dependencies:
+**First**, install the respective dependencies of the project in two different terminals, **api** and **client**:
 `npm install`
 
-**Next**, create the database and seed it with initial data:
+**Next**, create the database and seed it with initial data in the **api** terminal:
 `npm run seed`
 
-**Finally**, launch the application:
+**Finally**, launch the application in both terminals:
 `npm start`
 
 **Verify the deployment by navigating to your server address in
 your preferred browser**
 
-http://localhost:3000
+http://localhost:3000 (client) and http://localhost:5000 (api)
 
 or
 
 ```sh
-127.0.0.1:3000
+127.0.0.1:3000 127.0.0.1:5000
 ```
 
 ##
