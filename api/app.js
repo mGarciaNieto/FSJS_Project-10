@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const { sequelize } = require('./models')
 const users = require('./routes/users')
 const courses = require('./routes/courses')
+const cors = require('cors')
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true'
@@ -13,11 +14,20 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 // create the Express app
 const app = express()
 
+// Enable All CORS Requests
+//app.use(cors())
+
+app.use(
+	cors({
+		origin: 'http://localhost:3000' // Allow only your React development server to access
+	})
+)
+
 // setup morgan which gives us http request logging
 app.use(morgan('dev'))
 
 // Setup request body JSON parsing.
-app.use(express.json());
+app.use(express.json())
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
