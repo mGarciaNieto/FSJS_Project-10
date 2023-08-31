@@ -44,11 +44,11 @@ http://localhost:3000 (client) and http://localhost:5000 (api)
 
 or
 
-client
+**client**
 ```sh
 127.0.0.1:3000
 ```
-api
+**api**
 ```sh
 127.0.0.1:5000
 ```
