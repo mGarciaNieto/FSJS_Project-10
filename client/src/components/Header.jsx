@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
 
 export default function Header() {
+	const liStyle = {
+		paddingLeft: '40px'
+	}
+
 	return (
 		<header>
 			<div className='wrap header--flex'>
@@ -9,8 +13,12 @@ export default function Header() {
 				</h1>
 				<nav>
 					<ul className='header--signedout'>
-						<li>Sign Up</li>
-						<li>Sign In</li>
+						<li>
+							<Link to='/signup'>Sign Up</Link>
+						</li>
+						<li style={liStyle}>
+							<Link to='/signin'>Sign In</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
