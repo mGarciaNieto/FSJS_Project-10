@@ -15,7 +15,7 @@ function CourseDetail() {
 	}, [id])
 
 	const handleDelete = () => {
-		fetch(`/api/courses/${id}`, { method: 'DELETE' })
+		fetch(`/ap/courses/${id}`, { method: 'DELETE' })
 			.then(() => navigate('/'))
 			.catch((error) => console.error('Error deleting course:', error))
 	}
@@ -27,9 +27,9 @@ function CourseDetail() {
 					<Link className='button' to={`/courses/${id}/update`}>
 						Update Course
 					</Link>
-					<button className='button' onClick={handleDelete}>
+					<Link className='button' onClick={handleDelete} to='/'>
 						Delete Course
-					</button>
+					</Link>
 					<Link className='button button-secondary' to='/'>
 						Return to List
 					</Link>

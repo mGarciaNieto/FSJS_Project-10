@@ -7,6 +7,9 @@ import UserSignIn from './components/UserSignIn'
 import UserSignUp from './components/UserSignUp'
 import CreateCourse from './components/CreateCourse'
 import { NotFound } from './components/NotFound'
+import { Forbidden } from './components/Forbidden'
+import { UnhandledError } from './components/UnhandledError'
+import { UserSignOut } from './components/UserSignOut'
 
 function App() {
 	return (
@@ -22,7 +25,10 @@ function App() {
 						<Route path='/courses/:id' element={<CourseDetail />} />
 						<Route path='/signin' element={<UserSignIn />} />
 						<Route path='/signup' element={<UserSignUp />} />
-						<Route path='/signout' element={<h1>Sign Out</h1>} />
+						<Route path='/signout' element={<UserSignOut />} />
+						<Route path='/forbidden' element={<Forbidden />} />
+						<Route path='/error' element={<UnhandledError />} />
+						<Route path='/notfound' element={<NotFound />} />
 						<Route path='*' element={<NotFound />} />
 					</Routes>
 				}
