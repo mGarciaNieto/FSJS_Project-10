@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import { fetchCourseDetail } from '../utils/apiRequests'
 
 function CourseDetail() {
 	const [course, setCourse] = useState({})
@@ -7,15 +8,10 @@ function CourseDetail() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/api/courses/${id}`)
-			.then((response) => response.json())
-			.then((data) => {
-				setCourse({
-					...data,
-					authorName: `${data.user.firstName} ${data.user.lastName}`
-				})
-			})
-			.catch((error) => console.error('Error fetching course details:', error))
+		// Fetch course detail data when component is mounted
+		fetchCourseDetail(id)
+			.then((data) => setCourse(data))
+			.catch((error) => console.error(error))
 	}, [id])
 
 	const handleDelete = () => {

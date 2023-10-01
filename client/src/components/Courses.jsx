@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { fetchCourses } from '../utils/apiRequests'
 
 function Courses() {
 	const [courses, setCourses] = useState([])
 
 	useEffect(() => {
-		// Fetch the list of courses from the REST API
-		fetch('http://localhost:5000/api/courses')
-			.then((response) => {
-				if (response.ok) {
-					return response.json()
-				}
-				throw new Error('Network response was not ok')
-			})
-			.then((data) => setCourses(data))
-			.catch((error) => console.error('Error fetching courses:', error))
-	}, [])
+    // Fetch courses data when component is mounted
+    fetchCourses().then(data => setCourses(data)).catch(error => console.error(error));
+  }, []);
 
 	return (
 		<div className='wrap main--grid'>
