@@ -6,10 +6,11 @@ import UpdateCourse from './components/UpdateCourse'
 import UserSignIn from './components/UserSignIn'
 import UserSignUp from './components/UserSignUp'
 import CreateCourse from './components/CreateCourse'
-import { NotFound } from './components/NotFound'
-import { Forbidden } from './components/Forbidden'
-import { UnhandledError } from './components/UnhandledError'
-import { UserSignOut } from './components/UserSignOut'
+import NotFound from './components/NotFound'
+import Forbidden from './components/Forbidden'
+import UnhandledError from './components/UnhandledError'
+import UserSignOut from './components/UserSignOut'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
 	return (
@@ -18,8 +19,8 @@ function App() {
 			<main>
 				{
 					<Routes>
-						<Route path='/courses/:id/update' element={<UpdateCourse />} />
-						<Route path='/courses/create' element={<CreateCourse />} />
+						<Route path="/courses/create" element={<PrivateRoute><CreateCourse /></PrivateRoute>} />
+        		<Route path="/courses/:id/update" element={<PrivateRoute><UpdateCourse /></PrivateRoute>} />
 
 						<Route exact path='/' element={<Courses />} />
 						<Route path='/courses/:id' element={<CourseDetail />} />

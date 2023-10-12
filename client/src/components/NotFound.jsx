@@ -1,7 +1,7 @@
 import React from 'react'
 import myImage from '../img/pageNotFound_404_error.png'
 
-export const NotFound = () => {
+const NotFound = () => {
 	const imgStyle = {
 		width: '100%',
 		maxWidth: '500px',
@@ -15,3 +15,5 @@ export const NotFound = () => {
 		</div>
 	)
 }
+
+export default NotFound

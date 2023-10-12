@@ -1,7 +1,7 @@
 import React from 'react'
 import myImage from '../img/unexpectedError.png'
 
-export const UnhandledError = () => {
+const UnhandledError = () => {
 	const imgStyle = {
 		width: '100%',
 		maxWidth: '500px',
@@ -15,3 +15,5 @@ export const UnhandledError = () => {
 		</div>
 	)
 }
+
+export default UnhandledError

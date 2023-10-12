@@ -1,7 +1,7 @@
 import React from 'react'
 import myImage from '../img/forbidden.png'
 
-export const Forbidden = () => {
+const Forbidden = () => {
 	const imgStyle = {
 		width: '100%',
 		maxWidth: '500px',
@@ -15,3 +15,5 @@ export const Forbidden = () => {
 		</div>
 	)
 }
+
+export default Forbidden

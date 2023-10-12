@@ -1,5 +1,5 @@
 import React from 'react'
 
-export function UserSignOut() {
+export default function UserSignOut() {
 	return <div className='wrap'>UserSignOut</div>
 }
