@@ -29,7 +29,9 @@ export const fetchCourseDetail = async (id) => {
 			data.authorName = `${data.user.firstName} ${data.user.lastName}`
 			return data
 		} else {
-			throw new Error(`Error fetching course with ID: ${id}`)
+			const error = new Error('Network response was not ok');
+			error.status = response.status;
+			throw error;
 		}
 	} catch (error) {
 		console.error(error)

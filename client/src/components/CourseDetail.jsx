@@ -1,17 +1,23 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, Fragment, useContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { fetchCourseDetail } from '../utils/apiRequests'
+import AuthContext from '../context/AuthContext'
+import ReactMarkdown from 'react-markdown'
 
 function CourseDetail() {
 	const [course, setCourse] = useState({})
 	const { id } = useParams()
 	const navigate = useNavigate()
+	const { authUser } = useContext(AuthContext)
 
 	useEffect(() => {
 		// Fetch course detail data when component is mounted
 		fetchCourseDetail(id)
 			.then((data) => setCourse(data))
-			.catch((error) => console.error(error))
+			.catch((error) => {
+				console.error(error)
+				error.status === 404 ? navigate('/notfound') : navigate('/error')
+			})
 	}, [id])
 
 	const handleDelete = () => {
@@ -42,13 +48,15 @@ function CourseDetail() {
 						<h3 className='course--detail--title'>Course</h3>
 						<h4 className='course--name'>{course.title}</h4>
 						<p>By {course.authorName}</p>
-						<p>{course.description}</p>
+						<p>
+							<ReactMarkdown>{course.description}</ReactMarkdown>
+						</p>
 					</div>
 					<div>
 						<h3 className='course--detail--title'>Estimated Time</h3>
 						<p>{course.estimatedTime}</p>
 						<h3 className='course--detail--title'>Materials Needed</h3>
-						<ul className='course--detail--list'>{course.materialsNeeded && course.materialsNeeded.split('\n').map((material, index) => <li key={index}>{material}</li>)}</ul>
+						<p className='course--detail--list'>{course.materialsNeeded && course.materialsNeeded.split('\n').map((material, index) => <ReactMarkdown key={index}>{material}</ReactMarkdown>)}</p>
 					</div>
 				</div>
 			</div>

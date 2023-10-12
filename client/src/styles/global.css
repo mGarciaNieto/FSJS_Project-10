@@ -15,7 +15,7 @@ h2 {
 	margin-bottom: 1rem;
 }
 p {
-	font-weight: 300;
+	font-weight: 500;
 	margin-bottom: 1.5rem;
 	line-height: 1.5;
 	hyphens: auto;
@@ -117,8 +117,8 @@ header nav a:hover,
 	color: #47395e;
 }
 .course--detail--list {
-	font-weight: 300;
-	margin: 0 0 1.5rem 1rem;
+	font-weight: 500;
+	margin: 0 0 1rem -1rem;
 	line-height: 1.5;
 }
 .actions--bar {

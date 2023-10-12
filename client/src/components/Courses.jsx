@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { fetchCourses } from '../utils/apiRequests'
 
 function Courses() {
 	const [courses, setCourses] = useState([])
+	const navigate = useNavigate()
 
 	useEffect(() => {
-    // Fetch courses data when component is mounted
-    fetchCourses().then(data => setCourses(data)).catch(error => console.error(error));
-  }, []);
+		// Fetch courses data when component is mounted
+		fetchCourses()
+			.then((data) => setCourses(data))
+			.catch((error) => {
+				console.error('Error getting courses  ', error)
+				navigate('/error')
+			})
+	}, [])
 
 	return (
 		<div className='wrap main--grid'>
