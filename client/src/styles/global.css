@@ -2,6 +2,7 @@
 /* font-family: 'Press Start 2P', cursive; */
 * {
 	box-sizing: border-box;
+	margin: 0;
 }
 html {
 	font-size: 1.25em;
@@ -32,7 +33,7 @@ a {
 header {
 	background: rgba(74, 5, 106, 0.8);
 	color: #fff;
-	padding: 1rem 0;
+	padding: 2rem 0 2.5rem 0;
 	margin-bottom: 2rem;
 }
 .header--flex {
@@ -74,10 +75,6 @@ header nav a:hover,
 	margin-bottom: 1.5rem;
 	display: block;
 }
-.course--module:hover {
-	background: #9e9da0;
-	box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-}
 .course--label {
 	color: #fff;
 	font-size: 0.9rem;
@@ -94,6 +91,10 @@ header nav a:hover,
 	color: #57496e;
 	font-weight: 300;
 	font-size: 1.25rem;
+}
+.course--module:hover {
+	background: #9e9da0;
+	box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .course--add--title .add {
 	width: 20px;
@@ -118,8 +119,11 @@ header nav a:hover,
 }
 .course--detail--list {
 	font-weight: 500;
-	margin: 0 0 1rem -1rem;
+	margin: 0 0 1rem 0rem;
 	line-height: 1.5;
+}
+.course--detail--list ul{
+	margin-left: -2rem;
 }
 .actions--bar {
 	background: #e9e5f0;

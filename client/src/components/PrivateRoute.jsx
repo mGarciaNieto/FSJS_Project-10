@@ -15,8 +15,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom'
  * @param {object} component - component to be rendered
  * @param {object} rest - rest of the props
  * @returns {JSX.Element}
- * @description - if user is authorised, render the component
- * else redirect to signin route
+ * @description - if user is authorised, render the component else redirect to signin route
  * @example
  * <PrivateRoute path="/courses/create" element={<CreateCourse />} />
  */
@@ -27,7 +26,7 @@ const PrivateRoute = () => {
 	if (authUser) {
 		return <Outlet />
 	} else {
-		return <Navigate to='signin' state={{ from: location.pathname }} />
+		return <Navigate to='/signin' state={{ from: location.pathname }} />
 	}
 }
 

@@ -1,10 +1,13 @@
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 export default function Header() {
 	const liStyle = {
 		paddingLeft: '40px'
 	}
 
+	const { authUser } = useContext(AuthContext)
 	return (
 		<header>
 			<div className='wrap header--flex'>
@@ -13,12 +16,34 @@ export default function Header() {
 				</h1>
 				<nav>
 					<ul className='header--signedout'>
-						<li>
-							<Link to='/signup'>Sign Up</Link>
-						</li>
-						<li style={liStyle}>
-							<Link to='/signin'>Sign In</Link>
-						</li>
+						{/* If user is not authenticated, show Sign up  and Sign in links */}
+						{authUser === null ? (
+							<>
+								<li>
+									<Link className='signup' to='/signup'>
+										Sign up
+									</Link>
+								</li>
+								<li style={liStyle}>
+									<Link className='signin' to='/signin'>
+										Sign in
+									</Link>
+								</li>
+							</>
+						) : (
+							<>
+								<li>
+									<span>
+										Welcome, {authUser.firstName} {authUser.lastName} !
+									</span>
+								</li>
+								<li>
+									<Link className='signout' to='/signout'>
+										Sign out
+									</Link>
+								</li>
+							</>
+						)}
 					</ul>
 				</nav>
 			</div>

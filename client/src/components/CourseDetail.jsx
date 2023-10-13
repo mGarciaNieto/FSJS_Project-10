@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { fetchCourseDetail } from '../utils/apiRequests'
 import AuthContext from '../context/AuthContext'
 import ReactMarkdown from 'react-markdown'
+import { api } from '../utils/apiRequests'
 
 function CourseDetail() {
 	const [course, setCourse] = useState({})
@@ -20,10 +21,18 @@ function CourseDetail() {
 			})
 	}, [id])
 
-	const handleDelete = () => {
-		fetch(`/ap/courses/${id}`, { method: 'DELETE' })
-			.then(() => navigate('/'))
-			.catch((error) => console.error('Error deleting course:', error))
+	const handleDelete = async () => {
+		const { password } = authUser
+		const data = await api(`/courses/${id}`, 'DELETE', null, { ...authUser, password: password })
+		if (data.status === 204) {
+			navigate('/')
+		} else if (data.status === 403) {
+			navigate('/forbidden')
+		} else if (data.status === 500) {
+			navigate('/error')
+		} else {
+			throw new Error()
+		}
 	}
 
 	return (
@@ -48,15 +57,15 @@ function CourseDetail() {
 						<h3 className='course--detail--title'>Course</h3>
 						<h4 className='course--name'>{course.title}</h4>
 						<p>By {course.authorName}</p>
-						<p>
+						<>
 							<ReactMarkdown>{course.description}</ReactMarkdown>
-						</p>
+						</>
 					</div>
-					<div>
+					<div className='course'>
 						<h3 className='course--detail--title'>Estimated Time</h3>
 						<p>{course.estimatedTime}</p>
 						<h3 className='course--detail--title'>Materials Needed</h3>
-						<p className='course--detail--list'>{course.materialsNeeded && course.materialsNeeded.split('\n').map((material, index) => <ReactMarkdown key={index}>{material}</ReactMarkdown>)}</p>
+						<div className='course--detail--list'>{course.materialsNeeded && course.materialsNeeded.split('\n').map((material, index) => <ReactMarkdown key={index}>{material}</ReactMarkdown>)}</div>
 					</div>
 				</div>
 			</div>
