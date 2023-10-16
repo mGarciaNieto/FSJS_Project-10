@@ -19,7 +19,7 @@ function CourseDetail() {
 				console.error(error)
 				error.status === 404 ? navigate('/notfound') : navigate('/error')
 			})
-	}, [id])
+	}, [id,navigate])
 
 	const handleDelete = async () => {
 		const { password } = authUser

@@ -14,7 +14,7 @@ function Courses() {
 				console.error('Error getting courses  ', error)
 				navigate('/error')
 			})
-	}, [])
+	}, [navigate])
 
 	return (
 		<div className='wrap main--grid'>
