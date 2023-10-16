@@ -19,9 +19,13 @@ function CourseDetail() {
 				console.error(error)
 				error.status === 404 ? navigate('/notfound') : navigate('/error')
 			})
-	}, [id,navigate])
+	}, [id, navigate])
 
 	const handleDelete = async () => {
+		if (!authUser) {
+			//console.error('authUser is null or undefined')
+			return
+		}
 		const { password } = authUser
 		const data = await api(`/courses/${id}`, 'DELETE', null, { ...authUser, password: password })
 		if (data.status === 204) {
@@ -39,12 +43,16 @@ function CourseDetail() {
 		<Fragment>
 			<div className='actions--bar'>
 				<div className='wrap'>
-					<Link className='button' to={`/courses/${id}/update`}>
-						Update Course
-					</Link>
-					<Link className='button' onClick={handleDelete} to='/'>
-						Delete Course
-					</Link>
+					{authUser && authUser.id === course.userId ? (
+						<Fragment>
+							<Link className='button' to={`/courses/${id}/update`}>
+								Update Course
+							</Link>
+							<Link className='button' onClick={handleDelete} to='/'>
+								Delete Course
+							</Link>
+						</Fragment>
+					) : null}
 					<Link className='button button-secondary' to='/'>
 						Return to List
 					</Link>
