@@ -1,7 +1,11 @@
 import React from 'react'
 
 const ValidationErrors = ({ errors }) => {
-	errors.length === 0 ? null : console.error(errors)
+	if (errors.length === 0) {
+		console.log('No errors')
+		// console.error(errors)
+		return null
+	}
 	return (
 		<div className='validation-errors'>
 			<h3>Validation Errors</h3>

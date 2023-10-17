@@ -23,7 +23,7 @@ function CourseDetail() {
 
 	const handleDelete = async () => {
 		if (!authUser) {
-			//console.error('authUser is null or undefined')
+			console.error('authUser is null or undefined')
 			return
 		}
 		const { password } = authUser

@@ -1,14 +1,15 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
+import ValidatonErrors from './ValidationErrors'
 
 function UserSignIn() {
 	const { actions } = useContext(AuthContext)
-	const [emailAddress, setEmailAddress] = useState('')
-	const [password, setPassword] = useState('')
-	const [errors, setErrors] = useState([])
 	const navigate = useNavigate()
 	const location = useLocation()
+	const emailAddress = useRef(null)
+	const password = useRef(null)
+	const [errors, setErrors] = useState([])
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
@@ -19,7 +20,9 @@ function UserSignIn() {
 			from = location.state.from
 		}
 
-		const credentials = { emailAddress, password }
+		const credentials = { emailAddress: emailAddress.current.value, password: password.current.value }
+		console.log(credentials)
+
 		try {
 			const user = await actions.signIn(credentials)
 			if (!user) {
@@ -29,7 +32,9 @@ function UserSignIn() {
 				navigate(from)
 			}
 		} catch (error) {
-			//console.log(error)
+			console.log(error)
+			console.log(error.message)
+			console.error('Error signing in:', error)
 			navigate('/error')
 		}
 	}
@@ -41,12 +46,12 @@ function UserSignIn() {
 	return (
 		<div className='form--centered'>
 			<h2>Sign In</h2>
-
+			<ValidatonErrors errors={errors} />
 			<form onSubmit={handleSignIn}>
 				<label htmlFor='emailAddress'>Email Address</label>
-				<input id='emailAddress' name='emailAddress' type='email' value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} placeholder='email' />
+				<input id='emailAddress' name='emailAddress' type='email'  ref={emailAddress} placeholder='email' />
 				<label htmlFor='password'>Password</label>
-				<input id='password' name='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='password' />
+				<input id='password' name='password' type='password'  ref={password} placeholder='password' />
 				<button className='button' type='submit'>
 					Sign In
 				</button>
