@@ -1,50 +1,49 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ValidatonErrors from './ValidationErrors'
 import { api } from '../utils/apiRequests'
 import AuthContext from '../context/AuthContext'
 
-
 function UserSignUp() {
-	const [errors, setErrors] = useState([])
 	const navigate = useNavigate()
-	const [formData, setFormData] = useState({
-		firstName: '',
-		lastName: '',
-		emailAddress: '',
-		password: ''
-	})
-	// const history = useHistory();
 	const { actions } = useContext(AuthContext)
+	const firstName = useRef('')
+	const lastName = useRef('')
+	const emailAddress = useRef('')
+	const password = useRef('')
+	const [errors, setErrors] = useState([])
 
-
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setFormData({
-			...formData,
-			[name]: value
-		})
-	}
-
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-		// Send a POST request to the /api/users route
-		fetch('/api/users', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(formData)
-		})
-			.then((response) => {
-				if (response.ok) {
-					// If the response is ok, sign in the user
-					// You can redirect the user to another route
-					// history.push('/');
+		// Handle the sign-up logic here
+		const user = {
+			firstName: firstName.current.value,
+			lastName: lastName.current.value,
+			emailAddress: emailAddress.current.value,
+			password: password.current.value
+		}
+		try {
+			const response = await api('/users', 'POST', user)
+			if (response.status === 201) {
+				console.log(`${user.firstName} ${user.lastName} is successfully signed up and authenticated!`)
+				const credentials = {
+					emailAddress: user.emailAddress,
+					password: user.password
 				}
-			})
-			.catch((error) => console.error('Error during fetch:', error))
+				await actions.signIn(credentials)
+				navigate('/')
+			} else if (response.status === 400) {
+				const data = await response.json()
+				setErrors(data.errors)
+			} else if (response.status === 500) {
+				navigate('/error')
+			} else {
+				throw Error()
+			}
+		} catch (e) {
+			console.log('error signing up', e)
+		}
 	}
 
 	const handleCancel = () => {
@@ -57,13 +56,13 @@ function UserSignUp() {
 			<ValidatonErrors errors={errors} />
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='firstName'>First Name</label>
-				<input id='firstName' name='firstName' type='text' value={formData.firstName} onChange={handleChange} />
+				<input id='firstName' name='firstName' type='text' ref={firstName} placeholder='first name' />
 				<label htmlFor='lastName'>Last Name</label>
-				<input id='lastName' name='lastName' type='text' value={formData.lastName} onChange={handleChange} />
+				<input id='lastName' name='lastName' type='text' ref={lastName} placeholder='last name' />
 				<label htmlFor='emailAddress'>Email Address</label>
-				<input id='emailAddress' name='emailAddress' type='email' value={formData.emailAddress} onChange={handleChange} />
+				<input id='emailAddress' name='emailAddress' type='email' ref={emailAddress} placeholder='email' />
 				<label htmlFor='password'>Password</label>
-				<input id='password' name='password' type='password' value={formData.password} onChange={handleChange} />
+				<input id='password' name='password' type='password' ref={password} placeholder='password' />
 				<button className='button' type='submit'>
 					Sign Up
 				</button>
