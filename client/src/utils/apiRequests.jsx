@@ -40,7 +40,7 @@ export const fetchCourseDetail = async (id) => {
 }
 
 export const api = (path, method = 'GET', body = null, credentials = null) => {
-	const url = `API_URL${path}`
+	const url = `${API_URL}${path}`;
 
 	const options = {
 		method: method,

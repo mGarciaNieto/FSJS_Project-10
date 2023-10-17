@@ -7,7 +7,7 @@ const ValidationErrors = ({ errors }) => {
 		return null
 	}
 	return (
-		<div className='validation-errors'>
+		<div className='validation--errors'>
 			<h3>Validation Errors</h3>
 			<ul>
 				{errors.map((error, index) => (

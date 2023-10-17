@@ -39,20 +39,13 @@ export const UserProvider = (props) => {
 	 * if status is ok, then authUser variable is updated
 	 * @returns - user details are returned
 	 */
-
 	const signIn = async (signInCredentials) => {
 		const response = await api('/users', 'GET', null, signInCredentials)
+
 		if (response.status === 200) {
-            const user = null
-            console.log(response.status)
-			// const user = await response.json()
-            try {
-                 user = await response.json();
-              } catch (error) {
-                console.error('Failed to parse JSON:', error);
-              }
-
-
+			console.log(response.status)
+			const user = await response.json()
+			user.password = credentials.password
 
 			setAuthUser(user)
 			setCredentials(signInCredentials)

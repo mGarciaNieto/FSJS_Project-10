@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext'
 
 export default function Header() {
 	const liStyle = {
-		paddingLeft: '40px'
+		paddingLeft: '60px'
 	}
 
 	const { authUser } = useContext(AuthContext)
@@ -34,10 +34,10 @@ export default function Header() {
 							<>
 								<li>
 									<span>
-										Welcome, {authUser.firstName} {authUser.lastName} !
+										Welcome, {authUser.firstName} {authUser.lastName}!
 									</span>
 								</li>
-								<li>
+								<li style={liStyle}>
 									<Link className='signout' to='/signout'>
 										Sign out
 									</Link>

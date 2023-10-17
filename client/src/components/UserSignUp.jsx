@@ -1,8 +1,13 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import ValidatonErrors from './ValidationErrors'
+import { api } from '../utils/apiRequests'
+import AuthContext from '../context/AuthContext'
+
 
 function UserSignUp() {
+	const [errors, setErrors] = useState([])
 	const navigate = useNavigate()
 	const [formData, setFormData] = useState({
 		firstName: '',
@@ -11,6 +16,8 @@ function UserSignUp() {
 		password: ''
 	})
 	// const history = useHistory();
+	const { actions } = useContext(AuthContext)
+
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -47,6 +54,7 @@ function UserSignUp() {
 	return (
 		<div className='form--centered'>
 			<h2>Sign Up</h2>
+			<ValidatonErrors errors={errors} />
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='firstName'>First Name</label>
 				<input id='firstName' name='firstName' type='text' value={formData.firstName} onChange={handleChange} />
