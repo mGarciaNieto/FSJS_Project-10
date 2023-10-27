@@ -57,7 +57,5 @@ export const api = (path, method = 'GET', body = null, credentials = null) => {
 		options.headers.Authorization = `Basic ${encodedCredentials}`
 	}
 
-		//console.log(fetch(url, options)
-
 	return fetch(url, options)
 }

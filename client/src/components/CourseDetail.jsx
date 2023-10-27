@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Fragment, useContext } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { fetchCourseDetail } from '../utils/apiRequests'
+import { fetchCourseDetail, api } from '../utils/apiRequests'
 import AuthContext from '../context/AuthContext'
 import ReactMarkdown from 'react-markdown'
-import { api } from '../utils/apiRequests'
 
 function CourseDetail() {
 	const [course, setCourse] = useState({})

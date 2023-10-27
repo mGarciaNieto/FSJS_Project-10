@@ -26,9 +26,9 @@ router.post(
 	'/users',
 	asyncHandler(async (req, res) => {
 		try {
-			if (req.body.password) {
-				req.body.password = bcrypt.hashSync(req.body.password, 10)
-			}
+			// if (req.body.password) {
+			// 	req.body.password = bcrypt.hashSync(req.body.password, 10)
+			// }
 			await User.create(req.body)
 			res.status(201).location('/').end()
 		} catch (error) {
