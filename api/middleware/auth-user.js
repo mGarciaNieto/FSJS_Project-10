@@ -23,7 +23,7 @@ exports.authenticateUser = async (req, res, next) => {
 			const authenticated = bcrypt.compareSync(credentials.pass, user.password)
 			console.log(user.password)
 			console.log('Password received:', credentials.pass)
-		  console.log('Password stored:', user.password);
+			console.log('Password stored:', user.password)
 			console.log('Authenticated:', authenticated)
 
 			if (authenticated) {

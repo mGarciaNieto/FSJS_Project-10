@@ -38,6 +38,7 @@ export const UserProvider = (props) => {
 			//Cookies.set('authenticatedCredentials', JSON.stringify(signInCredentials), { expires: 1 })
 			return user
 		} else if (response.status === 401) {
+			console.log('unauthorized')
 			return null
 		} else {
 			throw new Error()
