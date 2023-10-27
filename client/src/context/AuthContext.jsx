@@ -14,24 +14,9 @@ export const UserProvider = (props) => {
 	 * Cookies are obtained so that it can be retained upon page loading
 	 */
 	const userCookie = Cookies.get('authenticatedUser')
-	const credentialsCookie = Cookies.get('authenticatedCredentials')
+	//const credentialsCookie = Cookies.get('authenticatedCredentials')
 
 	const [authUser, setAuthUser] = useState(userCookie ? JSON.parse(userCookie) : null)
-
-	const credentialsCookieSet = credentialsCookie
-		? JSON.parse(credentialsCookie)
-		: {
-				emailAddress: '',
-				password: ''
-		  }
-
-	/**
-	 * If cookies are present then it is retained in the credentials
-	 */
-	const [credentials, setCredentials] = useState({
-		emailAddress: credentialsCookieSet.emailAddress,
-		password: credentialsCookieSet.password
-	})
 
 	/**
 	 * The signin function performs signin checks before granting access to the user
@@ -45,12 +30,12 @@ export const UserProvider = (props) => {
 		if (response.status === 200) {
 			console.log(response.status)
 			const user = await response.json()
-			user.password = credentials.password
+			user.password = signInCredentials.password
 
 			setAuthUser(user)
-			setCredentials(signInCredentials)
+			//setCredentials(signInCredentials)
 			Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 })
-			Cookies.set('authenticatedCredentials', JSON.stringify(signInCredentials), { expires: 1 })
+			//Cookies.set('authenticatedCredentials', JSON.stringify(signInCredentials), { expires: 1 })
 			return user
 		} else if (response.status === 401) {
 			return null
@@ -65,16 +50,15 @@ export const UserProvider = (props) => {
 	 */
 	const signOut = () => {
 		setAuthUser(null)
-		setCredentials({ emailAddress: null, password: null })
+		// setCredentials({ emailAddress: null, password: null })
 		Cookies.remove('authenticatedUser')
-		Cookies.remove('authenticatedCredentials')
+		//Cookies.remove('authenticatedCredentials')
 	}
 
 	return (
 		<AuthContext.Provider
 			value={{
 				authUser,
-				credentials,
 				actions: {
 					signIn,
 					signOut

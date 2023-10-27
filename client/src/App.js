@@ -19,27 +19,10 @@ function App() {
 			<main>
 				{
 					<Routes>
-						<Route
-							path='/courses/create'
-							element={
-								<PrivateRoute>
-									<CreateCourse />
-								</PrivateRoute>
-							}
-						/>
-						<Route
-							path='/courses/:id/update'
-							element={
-								<PrivateRoute>
-									<UpdateCourse />
-								</PrivateRoute>
-							}
-						/>
-
-						{/* <Route element={<PrivateRoute />}>
+						<Route element={<PrivateRoute />}>
 							<Route path='/courses/:id/update' element={<UpdateCourse />} />
 							<Route path='/courses/create' element={<CreateCourse />} />
-						</Route> */}
+						</Route>
 
 						<Route exact path='/' element={<Courses />} />
 						<Route path='/courses/:id' element={<CourseDetail />} />

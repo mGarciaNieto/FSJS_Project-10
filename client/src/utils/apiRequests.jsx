@@ -29,9 +29,9 @@ export const fetchCourseDetail = async (id) => {
 			data.authorName = `${data.user.firstName} ${data.user.lastName}`
 			return data
 		} else {
-			const error = new Error('Network response was not ok');
-			error.status = response.status;
-			throw error;
+			const error = new Error('Network response was not ok')
+			error.status = response.status
+			throw error
 		}
 	} catch (error) {
 		console.error(error)
@@ -40,7 +40,7 @@ export const fetchCourseDetail = async (id) => {
 }
 
 export const api = (path, method = 'GET', body = null, credentials = null) => {
-	const url = `${API_URL}${path}`;
+	const url = `${API_URL}${path}`
 
 	const options = {
 		method: method,
@@ -56,6 +56,8 @@ export const api = (path, method = 'GET', body = null, credentials = null) => {
 		const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`)
 		options.headers.Authorization = `Basic ${encodedCredentials}`
 	}
+
+		//console.log(fetch(url, options)
 
 	return fetch(url, options)
 }

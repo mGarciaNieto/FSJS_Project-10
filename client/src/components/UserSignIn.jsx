@@ -25,6 +25,7 @@ function UserSignIn() {
 
 		try {
 			const user = await actions.signIn(credentials)
+			console.log(user)
 			if (!user) {
 				setErrors(['Sign-in has failed!', 'Please check your credentials and try again.'])
 				// errors(setErrors)
